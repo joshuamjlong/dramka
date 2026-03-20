@@ -1,28 +1,295 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Dramka – Short-Form Drama for Mobile</title>
-<meta name="description" content="Dramka is a short-form drama platform built for mobile storytelling.">
-<meta name="robots" content="index, follow">  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dramka — Małe dramaty, wielkie emocje.</title>
+  <meta name="description" content="Dramka — Poland's first short-form drama platform. Małe dramaty, wielkie emocje." />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     html, body {
-      margin: 0;
       height: 100%;
-      background: black;
-    }
-    img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      overflow: hidden;
+      background: #0a0a0a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      background-image: url('cover.001.jpeg');
+      background-size: cover;
+      background-position: center 20%;
+      background-repeat: no-repeat;
+    }
+
+    @media (max-width: 600px) {
+      .bg {
+        background-image: url('cover.mobile.jpeg');
+        background-position: center top;
+      }
+    }
+
+    .bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.3) 40%,
+        rgba(0,0,0,0.0) 70%
+      );
+    }
+
+    .card {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      padding: 32px 28px 40px;
+      z-index: 10;
+    }
+
+    .wordmark {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 20px;
+    }
+
+    .tagline {
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .email-input {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .email-input::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .email-input:focus {
+      border-color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.11);
+    }
+
+    .checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      color: rgba(255,255,255,0.65);
+      font-size: 13.5px;
+      line-height: 1.4;
+      user-select: none;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.07);
+      cursor: pointer;
+      position: relative;
+      margin-top: 1px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .checkbox-label input[type="checkbox"]:checked {
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(255,255,255,0.85);
+    }
+
+    .checkbox-label input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 6px;
+      height: 10px;
+      border: 2px solid #111;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: #fff;
+      color: #111;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .submit-btn:hover { opacity: 0.88; }
+    .submit-btn:active { opacity: 0.75; }
+    .submit-btn:disabled { opacity: 0.4; cursor: default; }
+
+    .message {
+      display: none;
+      margin-top: 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .message.success {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .message.error {
+      color: rgba(255,160,130,0.9);
     }
   </style>
 </head>
 <body>
-<picture>
-  <source media="(max-width: 768px)" srcset="cover.mobile.jpeg">
-  <img src="cover.001.jpeg" alt="Dramka">
-</picture>
+
+  <div class="bg"></div>
+
+  <div class="card">
+    <div class="wordmark">Dramka</div>
+    <div class="tagline">Coraz bliżej premiery. Zostaw swój e-mail i bądź pierwszy.</div>
+
+    <div class="form-group">
+      <input
+        class="email-input"
+        type="email"
+        id="email"
+        placeholder="twój@email.pl"
+        autocomplete="email"
+        inputmode="email"
+      />
+    </div>
+
+    <div class="checkboxes">
+      <label class="checkbox-label">
+        <input type="checkbox" id="wants_news" checked />
+        <span>Chcę otrzymywać newsy o premierze i ekskluzywne zajawki</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="wants_beta" />
+        <span>Chcę zostać beta testerem i przetestować platformę przed premierą</span>
+      </label>
+    </div>
+
+    <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">
+      Zapisz mnie
+    </button>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    const { createClient } = supabase;
+    const client = createClient(
+      'https://weosandevhuzsrfaaxdv.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlb3NhbmRldmh1enNyZmFheGR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxNzI5OTMsImV4cCI6MjA4ODc0ODk5M30.7RMcLQVUAjBRKv3YQxqkJtAdw0wKusWtMq2b7CCJdwo'
+    );
+
+    async function handleSubmit() {
+      const email = document.getElementById('email').value.trim();
+      const wants_news = document.getElementById('wants_news').checked;
+      const wants_beta = document.getElementById('wants_beta').checked;
+      const btn = document.getElementById('submit-btn');
+      const msg = document.getElementById('message');
+
+      msg.style.display = 'none';
+      msg.className = 'message';
+
+      if (!email || !email.includes('@')) {
+        msg.textContent = 'Podaj poprawny adres e-mail.';
+        msg.className = 'message error';
+        msg.style.display = 'block';
+        return;
+      }
+
+      if (!wants_news && !wants_beta) {
+        msg.textContent = 'Zaznacz przynajmniej jedną opcję.';
+        msg.className = 'message error';
+        msg.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Wysyłam...';
+
+      const { error } = await client
+        .from('waitlist')
+        .insert([{ email, wants_news, wants_beta }]);
+
+      if (error) {
+        if (error.code === '23505') {
+          msg.textContent = 'Ten adres jest już na liście. Do zobaczenia na premierze.';
+          msg.className = 'message success';
+        } else {
+          msg.textContent = 'Coś poszło nie tak. Spróbuj jeszcze raz.';
+          msg.className = 'message error';
+          btn.disabled = false;
+          btn.textContent = 'Zapisz mnie';
+        }
+      } else {
+        btn.style.display = 'none';
+        document.querySelector('.checkboxes').style.display = 'none';
+        document.querySelector('.form-group').style.display = 'none';
+        document.querySelector('.tagline').style.display = 'none';
+        msg.textContent = 'Jesteś na liście. Odezwiemy się wkrótce.';
+        msg.className = 'message success';
+      }
+
+      msg.style.display = 'block';
+    }
+
+    document.getElementById('email').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSubmit();
+    });
+  </script>
+
 </body>
 </html>
