@@ -4,14 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dramka — Małe dramaty, wielkie emocje.</title>
-  <meta name="description" content="Dramka — Poland's first short-form drama platform. Małe dramaty, wielkie emocje." />
+  <meta name="description" content="Dramka — Poland's first short-form drama platform." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
       height: 100%;
       width: 100%;
-      overflow: hidden;
       background: #0a0a0a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     }
@@ -19,124 +18,149 @@
     .bg {
       position: fixed;
       inset: 0;
-      background-image: url('cover.001.jpeg');
+      background-image: url('landing-desktop.png');
       background-size: cover;
-      background-position: center 20%;
+      background-position: center center;
       background-repeat: no-repeat;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .bg {
-        background-image: url('cover.mobile.jpeg');
+        background-image: url('landing-mobile.png');
         background-position: center top;
       }
     }
 
-    .bg::after {
+    .bg::before {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.82) 0%,
-        rgba(0,0,0,0.3) 40%,
-        rgba(0,0,0,0.0) 70%
+        to bottom,
+        rgba(0,0,0,0.52) 0%,
+        rgba(0,0,0,0.12) 32%,
+        rgba(0,0,0,0.0) 52%,
+        rgba(0,0,0,0.48) 76%,
+        rgba(0,0,0,0.80) 100%
       );
     }
 
-    .card {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 480px;
-      padding: 32px 28px 40px;
+    .page {
+      position: relative;
       z-index: 10;
-    }
-
-    .wordmark {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 20px;
-    }
-
-    .tagline {
-      font-size: 15px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-
-    .form-group {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    /* ── Headline ── */
+    .headline-wrap {
+      width: 100%;
+      text-align: center;
+      padding-top: clamp(44px, 9vh, 80px);
+    }
+
+    .headline {
+      font-family: "Gill Sans", "Gill Sans MT", "GillSans-Light", "Trebuchet MS", sans-serif;
+      font-size: clamp(26px, 4.2vw, 48px);
+      font-weight: 300;
+      letter-spacing: 0.015em;
+      color: #ffffff;
+      line-height: 1.2;
+      text-shadow: 0 1px 20px rgba(0,0,0,0.45);
+    }
+
+    @media (max-width: 640px) {
+      .headline {
+        font-size: clamp(24px, 7vw, 36px);
+      }
+    }
+
+    /* ── Form ── */
+    .form-wrap {
+      width: 100%;
+      max-width: 400px;
+      padding-bottom: clamp(40px, 8vh, 72px);
+    }
+
+    .form-inner {
+      background: rgba(8, 8, 8, 0.68);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 18px;
+      padding: 26px 24px 22px;
+    }
+
+    .form-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.32);
       margin-bottom: 16px;
     }
 
     .email-input {
       width: 100%;
       padding: 13px 16px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
       color: #fff;
       font-size: 15px;
+      font-family: inherit;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
       -webkit-appearance: none;
+      margin-bottom: 14px;
     }
 
     .email-input::placeholder {
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.25);
     }
 
     .email-input:focus {
-      border-color: rgba(255,255,255,0.45);
-      background: rgba(255,255,255,0.11);
+      border-color: rgba(255,255,255,0.32);
+      background: rgba(255,255,255,0.09);
     }
 
     .checkboxes {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
     .checkbox-label {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 12px;
       cursor: pointer;
-      color: rgba(255,255,255,0.65);
-      font-size: 13.5px;
-      line-height: 1.4;
       user-select: none;
     }
 
     .checkbox-label input[type="checkbox"] {
       -webkit-appearance: none;
       appearance: none;
-      width: 18px;
-      height: 18px;
-      min-width: 18px;
-      border: 1.5px solid rgba(255,255,255,0.3);
+      width: 17px;
+      height: 17px;
+      min-width: 17px;
+      border: 1.5px solid rgba(255,255,255,0.22);
       border-radius: 4px;
-      background: rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.05);
       cursor: pointer;
       position: relative;
-      margin-top: 1px;
+      margin-top: 2px;
       transition: background 0.15s, border-color 0.15s;
     }
 
     .checkbox-label input[type="checkbox"]:checked {
-      background: rgba(255,255,255,0.85);
-      border-color: rgba(255,255,255,0.85);
+      background: #ffffff;
+      border-color: #ffffff;
     }
 
     .checkbox-label input[type="checkbox"]:checked::after {
@@ -144,47 +168,94 @@
       position: absolute;
       left: 4px;
       top: 1px;
-      width: 6px;
-      height: 10px;
-      border: 2px solid #111;
+      width: 5px;
+      height: 9px;
+      border: 1.5px solid #111;
       border-top: none;
       border-left: none;
       transform: rotate(45deg);
     }
 
+    .checkbox-text {
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.52);
+    }
+
     .submit-btn {
       width: 100%;
-      padding: 14px;
-      background: #fff;
-      color: #111;
+      padding: 14px 20px;
+      background: #ffffff;
+      color: #0a0a0a;
       border: none;
-      border-radius: 8px;
-      font-size: 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      font-family: inherit;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: opacity 0.2s;
+      transition: opacity 0.18s, transform 0.12s;
       -webkit-appearance: none;
     }
 
-    .submit-btn:hover { opacity: 0.88; }
-    .submit-btn:active { opacity: 0.75; }
-    .submit-btn:disabled { opacity: 0.4; cursor: default; }
+    .submit-btn:hover:not(:disabled) { opacity: 0.88; }
+    .submit-btn:active:not(:disabled) { transform: scale(0.987); opacity: 0.78; }
+    .submit-btn:disabled { opacity: 0.35; cursor: default; }
 
     .message {
       display: none;
-      margin-top: 14px;
-      font-size: 13.5px;
-      line-height: 1.5;
+      margin-top: 13px;
+      font-size: 12.5px;
+      line-height: 1.55;
       text-align: center;
     }
 
-    .message.success {
-      color: rgba(255,255,255,0.8);
+    .message.success { color: rgba(255,255,255,0.60); }
+    .message.error   { color: rgba(255,130,100,0.90); }
+
+    /* Success state */
+    .success-content {
+      display: none;
+      text-align: center;
+      padding: 6px 0 2px;
     }
 
-    .message.error {
-      color: rgba(255,160,130,0.9);
+    .success-content .s-big {
+      font-family: "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .success-content .s-sub {
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    /* ── Legal ── */
+    .legal {
+      position: fixed;
+      bottom: 16px;
+      right: 20px;
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.20);
+      text-align: right;
+      line-height: 1.6;
+      z-index: 20;
+      max-width: 240px;
+      pointer-events: none;
+    }
+
+    @media (max-width: 640px) {
+      .legal {
+        bottom: 10px;
+        right: 14px;
+        font-size: 10px;
+        max-width: 190px;
+      }
     }
   </style>
 </head>
@@ -192,37 +263,57 @@
 
   <div class="bg"></div>
 
-  <div class="card">
-    <div class="wordmark">Dramka</div>
-    <div class="tagline">Coraz bliżej premiery. Zostaw swój e-mail i bądź pierwszy.</div>
+  <div class="page">
 
-    <div class="form-group">
-      <input
-        class="email-input"
-        type="email"
-        id="email"
-        placeholder="twój@email.pl"
-        autocomplete="email"
-        inputmode="email"
-      />
+    <div class="headline-wrap">
+      <h1 class="headline">Małe dramaty, wielkie emocje.</h1>
     </div>
 
-    <div class="checkboxes">
-      <label class="checkbox-label">
-        <input type="checkbox" id="wants_news" checked />
-        <span>Chcę otrzymywać newsy o premierze i ekskluzywne zajawki</span>
-      </label>
-      <label class="checkbox-label">
-        <input type="checkbox" id="wants_beta" />
-        <span>Chcę zostać beta testerem i przetestować platformę przed premierą</span>
-      </label>
+    <div class="form-wrap">
+      <div class="form-inner">
+
+        <div id="form-content">
+          <div class="form-eyebrow">Bądź pierwszy</div>
+
+          <input
+            class="email-input"
+            type="email"
+            id="email"
+            placeholder="twój@email.pl"
+            autocomplete="email"
+            inputmode="email"
+          />
+
+          <div class="checkboxes">
+            <label class="checkbox-label">
+              <input type="checkbox" id="wants_news" checked />
+              <span class="checkbox-text">Chcę otrzymywać newsy o premierze i ekskluzywne zajawki</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="wants_beta" />
+              <span class="checkbox-text">Chcę zostać beta testerem i przetestować platformę przed premierą</span>
+            </label>
+          </div>
+
+          <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">
+            Zapisz mnie
+          </button>
+
+          <div class="message" id="message"></div>
+        </div>
+
+        <div class="success-content" id="success-content">
+          <div class="s-big">Dziękujemy.</div>
+          <div class="s-sub">Jesteś na liście.<br>Odezwiemy się przed premierą.</div>
+        </div>
+
+      </div>
     </div>
 
-    <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">
-      Zapisz mnie
-    </button>
+  </div>
 
-    <div class="message" id="message"></div>
+  <div class="legal">
+    Twój e-mail jest bezpieczny.<br>Nie udostępniamy danych osobom trzecim.
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -243,7 +334,7 @@
       msg.style.display = 'none';
       msg.className = 'message';
 
-      if (!email || !email.includes('@')) {
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         msg.textContent = 'Podaj poprawny adres e-mail.';
         msg.className = 'message error';
         msg.style.display = 'block';
@@ -266,24 +357,19 @@
 
       if (error) {
         if (error.code === '23505') {
-          msg.textContent = 'Ten adres jest już na liście. Do zobaczenia na premierze.';
-          msg.className = 'message success';
+          document.getElementById('form-content').style.display = 'none';
+          document.getElementById('success-content').style.display = 'block';
         } else {
           msg.textContent = 'Coś poszło nie tak. Spróbuj jeszcze raz.';
           msg.className = 'message error';
+          msg.style.display = 'block';
           btn.disabled = false;
           btn.textContent = 'Zapisz mnie';
         }
       } else {
-        btn.style.display = 'none';
-        document.querySelector('.checkboxes').style.display = 'none';
-        document.querySelector('.form-group').style.display = 'none';
-        document.querySelector('.tagline').style.display = 'none';
-        msg.textContent = 'Jesteś na liście. Odezwiemy się wkrótce.';
-        msg.className = 'message success';
+        document.getElementById('form-content').style.display = 'none';
+        document.getElementById('success-content').style.display = 'block';
       }
-
-      msg.style.display = 'block';
     }
 
     document.getElementById('email').addEventListener('keydown', function(e) {
