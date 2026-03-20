@@ -142,6 +142,7 @@
 
       .bg, .headline-wrap, .form-wrap, .legal-desktop { display: none; }
 
+      /* Image with headline overlaid at top */
       .mobile-bg {
         display: block;
         position: relative;
@@ -153,6 +154,19 @@
         background-repeat: no-repeat;
       }
 
+      /* Subtle top fade for headline legibility */
+      .mobile-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 28%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 100%);
+        z-index: 1;
+      }
+
+      /* Quick fade at the very bottom only */
       .mobile-bg::after {
         content: '';
         position: absolute;
@@ -161,15 +175,17 @@
         right: 0;
         height: 18%;
         background: linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,1) 100%);
+        z-index: 1;
       }
 
+      /* Headline — top center, mirrors desktop */
       .mobile-headline {
         position: absolute;
-        bottom: 22%;
+        top: 0;
         left: 0;
         right: 0;
         text-align: center;
-        padding: 0 16px;
+        padding-top: clamp(32px, 7vw, 52px);
         z-index: 2;
       }
 
@@ -184,6 +200,7 @@
         text-shadow: 0 1px 14px rgba(0,0,0,0.5);
       }
 
+      /* Form sits in the black below the image */
       .mobile-form-area {
         display: block;
         background: #0a0a0a;
