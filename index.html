@@ -14,7 +14,7 @@
     }
 
     /* ════════════════════════════════════════════
-       DESKTOP  (641px and above)
+       DESKTOP
     ════════════════════════════════════════════ */
     @media (min-width: 641px) {
 
@@ -29,20 +29,20 @@
         background-repeat: no-repeat;
       }
 
+      /* Lightened — was 0.48, now 0.30 at top */
       .bg::before {
         content: '';
         position: absolute;
         inset: 0;
         background: linear-gradient(
           to bottom,
-          rgba(0,0,0,0.48) 0%,
-          rgba(0,0,0,0.08) 30%,
+          rgba(0,0,0,0.30) 0%,
+          rgba(0,0,0,0.05) 30%,
           rgba(0,0,0,0.0) 55%,
-          rgba(0,0,0,0.20) 100%
+          rgba(0,0,0,0.12) 100%
         );
       }
 
-      /* Headline — upper center */
       .headline-wrap {
         position: fixed;
         top: 0;
@@ -64,7 +64,7 @@
         text-shadow: 0 1px 18px rgba(0,0,0,0.40);
       }
 
-      /* Form — bottom right, small and discrete */
+      /* Form — bottom right */
       .form-wrap {
         position: fixed;
         bottom: 36px;
@@ -73,28 +73,35 @@
         z-index: 20;
       }
 
-      /* Mobile-only elements hidden on desktop */
-      .mobile-bg { display: none; }
-      .mobile-form-area { display: none; }
+      /* Legal — bottom LEFT, one line */
+      .legal-desktop {
+        position: fixed;
+        bottom: 16px;
+        left: 22px;
+        font-size: 10.5px;
+        color: rgba(255,255,255,0.32);
+        white-space: nowrap;
+        z-index: 20;
+        pointer-events: none;
+      }
+
+      .mobile-bg, .mobile-form-area { display: none; }
     }
 
     /* ════════════════════════════════════════════
-       MOBILE  (640px and below)
+       MOBILE
     ════════════════════════════════════════════ */
     @media (max-width: 640px) {
 
       html, body { height: auto; overflow-y: auto; }
 
-      .bg { display: none; }
-      .headline-wrap { display: none; }
-      .form-wrap { display: none; }
+      .bg, .headline-wrap, .form-wrap, .legal-desktop { display: none; }
 
-      /* Full-width image that fades to black */
+      /* Portrait image — fade only at the very bottom, quick */
       .mobile-bg {
         display: block;
         position: relative;
         width: 100%;
-        /* Aspect ratio — portrait image */
         padding-bottom: 148%;
         background-image: url('landing-mobile.png');
         background-size: cover;
@@ -102,50 +109,51 @@
         background-repeat: no-repeat;
       }
 
+      /* Quick fade — only bottom 18%, sharp onset */
       .mobile-bg::after {
         content: '';
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 52%;
+        height: 18%;
         background: linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,1) 100%);
       }
 
-      /* Headline overlaid on the image, bottom of the photo */
+      /* Headline sits higher — bottom 22% of image */
       .mobile-headline {
         position: absolute;
-        bottom: 0;
+        bottom: 22%;
         left: 0;
         right: 0;
         text-align: center;
-        padding: 0 16px 28px;
+        padding: 0 16px;
         z-index: 2;
       }
 
       .mobile-headline h1 {
         font-family: "Gill Sans", "Gill Sans MT", "GillSans-Light", "Trebuchet MS", sans-serif;
-        font-size: clamp(20px, 5.8vw, 30px);
+        font-size: clamp(18px, 5.2vw, 28px);
         font-weight: 300;
         letter-spacing: 0.01em;
         color: #ffffff;
         white-space: nowrap;
         line-height: 1.2;
+        text-shadow: 0 1px 14px rgba(0,0,0,0.5);
       }
 
-      /* Dark area below image with form */
+      /* Form area — pushed down, sits in the black */
       .mobile-form-area {
         display: block;
         background: #0a0a0a;
-        padding: 28px 22px 48px;
+        padding: 8px 22px 48px;
       }
 
-      /* Legal on mobile sits at bottom of form area */
       .legal {
         text-align: center;
         margin-top: 18px;
         font-size: 10.5px;
-        color: rgba(255,255,255,0.20);
+        color: rgba(255,255,255,0.22);
         line-height: 1.6;
       }
     }
@@ -163,7 +171,6 @@
       padding: 22px 20px 18px;
     }
 
-    /* On mobile the form-inner is inside mobile-form-area, no frosted glass needed */
     @media (max-width: 640px) {
       .form-inner {
         background: transparent;
@@ -201,7 +208,7 @@
 
     @media (max-width: 640px) {
       .email-input {
-        font-size: 16px; /* prevents iOS zoom */
+        font-size: 16px;
         padding: 14px 16px;
         background: rgba(255,255,255,0.07);
         border: 1px solid rgba(255,255,255,0.14);
@@ -221,6 +228,10 @@
       flex-direction: column;
       gap: 10px;
       margin-bottom: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .checkboxes { gap: 14px; margin-bottom: 20px; }
     }
 
     .checkbox-label {
@@ -272,7 +283,6 @@
 
     @media (max-width: 640px) {
       .checkbox-text { font-size: 13.5px; color: rgba(255,255,255,0.55); }
-      .checkboxes { gap: 14px; margin-bottom: 20px; }
     }
 
     .submit-btn {
@@ -330,23 +340,6 @@
       color: rgba(255,255,255,0.50);
       line-height: 1.6;
     }
-
-    /* Desktop legal — fixed bottom right */
-    .legal-desktop {
-      position: fixed;
-      bottom: 14px;
-      right: 18px;
-      font-size: 10px;
-      color: rgba(255,255,255,0.18);
-      text-align: right;
-      line-height: 1.6;
-      z-index: 20;
-      pointer-events: none;
-    }
-
-    @media (max-width: 640px) {
-      .legal-desktop { display: none; }
-    }
   </style>
 </head>
 <body>
@@ -383,9 +376,8 @@
     </div>
   </div>
 
-  <div class="legal-desktop">
-    Twój e-mail jest bezpieczny.<br>Nie udostępniamy danych osobom trzecim.
-  </div>
+  <!-- Legal — desktop, bottom left, one line -->
+  <div class="legal-desktop">Twój e-mail jest bezpieczny. Nie udostępniamy danych osobom trzecim.</div>
 
   <!-- ── MOBILE ──────────────────────────────────── -->
   <div class="mobile-bg">
@@ -417,9 +409,7 @@
         <div class="s-sub">Jesteś na liście.<br>Odezwiemy się przed premierą.</div>
       </div>
     </div>
-    <div class="legal">
-      Twój e-mail jest bezpieczny. Nie udostępniamy danych osobom trzecim.
-    </div>
+    <div class="legal">Twój e-mail jest bezpieczny. Nie udostępniamy danych osobom trzecim.</div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
