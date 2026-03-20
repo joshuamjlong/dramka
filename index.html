@@ -3,8 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dramka — Małe dramaty, wielkie emocje.</title>
-  <meta name="description" content="Dramka — Poland's first short-form drama platform." />
+
+  <title>Dramka — Pierwsza polska platforma z krótkimi serialami</title>
+  <meta name="description" content="Dramka to pierwsza w Polsce platforma z krótkimi serialami na telefon. Małe dramaty, wielkie emocje. Zapisz się i bądź pierwszy." />
+  <meta name="keywords" content="krótkie seriale, seriale na telefon, platforma streamingowa Polska, krótkie filmy serialowe, mobilne seriale, dramka, polska platforma streamingowa, seriale krótkometrażowe" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dramka.com" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dramka.com" />
+  <meta property="og:site_name" content="Dramka" />
+  <meta property="og:title" content="Dramka — Pierwsza polska platforma z krótkimi serialami" />
+  <meta property="og:description" content="Pierwsza w Polsce platforma z krótkimi serialami na telefon. Małe dramaty, wielkie emocje." />
+  <meta property="og:image" content="https://dramka.com/landing-desktop.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pl_PL" />
+
+  <!-- Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dramka — Pierwsza polska platforma z krótkimi serialami" />
+  <meta name="twitter:description" content="Pierwsza w Polsce platforma z krótkimi serialami na telefon. Małe dramaty, wielkie emocje." />
+  <meta name="twitter:image" content="https://dramka.com/landing-desktop.png" />
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "StreamingService",
+    "name": "Dramka",
+    "url": "https://dramka.com",
+    "description": "Pierwsza w Polsce platforma z krótkimi serialami na telefon. Seriale krótkometrażowe tworzone specjalnie dla urządzeń mobilnych.",
+    "slogan": "Małe dramaty, wielkie emocje.",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Warsaw, Poland"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Poland"
+    },
+    "inLanguage": "pl",
+    "genre": ["Drama", "Romance", "Thriller"],
+    "offers": {
+      "@type": "Offer",
+      "category": "Subscription"
+    }
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -29,7 +77,6 @@
         background-repeat: no-repeat;
       }
 
-      /* Lightened — was 0.48, now 0.30 at top */
       .bg::before {
         content: '';
         position: absolute;
@@ -64,7 +111,6 @@
         text-shadow: 0 1px 18px rgba(0,0,0,0.40);
       }
 
-      /* Form — bottom right */
       .form-wrap {
         position: fixed;
         bottom: 36px;
@@ -73,7 +119,6 @@
         z-index: 20;
       }
 
-      /* Legal — bottom LEFT, one line */
       .legal-desktop {
         position: fixed;
         bottom: 16px;
@@ -97,7 +142,6 @@
 
       .bg, .headline-wrap, .form-wrap, .legal-desktop { display: none; }
 
-      /* Portrait image — fade only at the very bottom, quick */
       .mobile-bg {
         display: block;
         position: relative;
@@ -109,7 +153,6 @@
         background-repeat: no-repeat;
       }
 
-      /* Quick fade — only bottom 18%, sharp onset */
       .mobile-bg::after {
         content: '';
         position: absolute;
@@ -120,7 +163,6 @@
         background: linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,1) 100%);
       }
 
-      /* Headline sits higher — bottom 22% of image */
       .mobile-headline {
         position: absolute;
         bottom: 22%;
@@ -142,7 +184,6 @@
         text-shadow: 0 1px 14px rgba(0,0,0,0.5);
       }
 
-      /* Form area — pushed down, sits in the black */
       .mobile-form-area {
         display: block;
         background: #0a0a0a;
@@ -376,7 +417,6 @@
     </div>
   </div>
 
-  <!-- Legal — desktop, bottom left, one line -->
   <div class="legal-desktop">Twój e-mail jest bezpieczny. Nie udostępniamy danych osobom trzecim.</div>
 
   <!-- ── MOBILE ──────────────────────────────────── -->
