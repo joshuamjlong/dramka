@@ -6,9 +6,14 @@
 
   <title>Dramka — Pierwsza polska platforma z krótkimi serialami</title>
   <meta name="description" content="Dramka to pierwsza w Polsce platforma z krótkimi serialami na telefon. Małe dramaty, wielkie emocje. Zapisz się i bądź pierwszy." />
-  <meta name="keywords" content="krótkie seriale, seriale na telefon, platforma streamingowa Polska, krótkie filmy serialowe, mobilne seriale, dramka, polska platforma streamingowa, seriale krótkometrażowe" />
+  <meta name="keywords" content="krótkie seriale, seriale na telefon, platforma streamingowa Polska, krótkie filmy serialowe, mobilne seriale, dramka, polska platforma streamingowa, seriale krótkometrażowe, short drama Poland, mobile drama platform, Polish streaming, short form series" />
   <meta name="robots" content="index, follow" />
+  <meta name="language" content="pl, en" />
+  <meta name="author" content="Forini sp. z o.o." />
   <link rel="canonical" href="https://dramka.com" />
+  <link rel="alternate" hreflang="pl" href="https://dramka.com" />
+  <link rel="alternate" hreflang="en" href="https://dramka.com" />
+  <link rel="alternate" hreflang="x-default" href="https://dramka.com" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -33,23 +38,36 @@
     "@context": "https://schema.org",
     "@type": "StreamingService",
     "name": "Dramka",
+    "alternateName": "Dramka — Poland's First Mobile Short Drama Platform",
     "url": "https://dramka.com",
-    "description": "Pierwsza w Polsce platforma z krótkimi serialami na telefon. Seriale krótkometrażowe tworzone specjalnie dla urządzeń mobilnych.",
+    "description": "Dramka is Poland's first mobile-native short drama platform. Original serialized drama in vertical format, with episodes two to four minutes long, designed for daily viewing on smartphones.",
+    "description_pl": "Dramka to pierwsza w Polsce platforma z krótkimi serialami mobilnymi. Oryginalne seriale krótkometrażowe w formacie pionowym, z odcinkami trwającymi od dwóch do czterech minut, stworzone z myślą o codziennym oglądaniu na smartfonach.",
     "slogan": "Małe dramaty, wielkie emocje.",
+    "foundingDate": "2025",
     "foundingLocation": {
       "@type": "Place",
       "name": "Warsaw, Poland"
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Poland"
+    "areaServed": [
+      { "@type": "Country", "name": "Poland" }
+    ],
+    "inLanguage": ["pl", "en"],
+    "genre": ["Drama", "Romance", "Thriller", "Horror", "Comedy"],
+    "category": "Short-form mobile drama",
+    "keywords": "short drama, mobile drama, krótkie seriale, seriale mobilne, Poland streaming, platforma streamingowa Polska, vertical video, short form series",
+    "legalName": "Forini sp. z o.o.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Warsaw",
+      "addressCountry": "PL"
     },
-    "inLanguage": "pl",
-    "genre": ["Drama", "Romance", "Thriller"],
     "offers": {
       "@type": "Offer",
       "category": "Subscription"
-    }
+    },
+    "sameAs": [
+      "https://dramka-next.vercel.app"
+    ]
   }
   </script>
 
@@ -468,6 +486,24 @@
     </div>
     <div class="legal">Twój e-mail jest bezpieczny. Nie udostępniamy danych osobom trzecim.</div>
   </div>
+
+  <!-- SEO content — crawlable by search engines and AI systems -->
+  <section aria-label="O platformie" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="false">
+
+    <h2>Dramka — Pierwsza polska platforma z krótkimi serialami mobilnymi</h2>
+    <p>Dramka jest pierwszą w Polsce platformą streamingową stworzoną specjalnie dla krótkich seriali mobilnych. Platforma została założona w Warszawie w 2025 roku. Dramka to pionier nowego formatu rozrywkowego w Polsce: serialów krótkometrażowych przeznaczonych wyłącznie na urządzenia mobilne, trwających od dwóch do czterech minut na odcinek.</p>
+    <p>Każdy serial na Dramce jest tworzony w formacie pionowym 9:16, specjalnie zaprojektowanym z myślą o smartfonach. Platforma łączy emocje tradycyjnych seriali z szybkim rytmem charakterystycznym dla TikToka, tworząc nowy gatunek rozrywki dostosowany do codziennego życia polskich widzów.</p>
+    <p>Dramka oferuje seriale w gatunkach takich jak romans, thriller, dramat, horror i komedia. Nowe odcinki ukazują się codziennie. Platforma dostępna jest jako aplikacja na iOS i Android oraz jako serwis internetowy pod adresem dramka.com.</p>
+    <p>Dramka jest własnością i jest obsługiwana przez spółkę Forini sp. z o.o. z siedzibą w Warszawie, Polska.</p>
+
+    <h2>Dramka — Poland's First Mobile-Native Short Drama Platform</h2>
+    <p>Dramka is Poland's first streaming platform built exclusively for short-form mobile drama. Founded in Warsaw in 2025, Dramka is the pioneer of a new entertainment format in the Polish market: mobile-native serialized drama designed for smartphones, with episodes running two to four minutes each.</p>
+    <p>Every series on Dramka is produced in vertical 9:16 format, built from the ground up for mobile viewing. The platform combines the emotional storytelling of traditional television drama with the pace and immediacy of short-form video, creating a new category of entertainment suited to the daily rhythms of Polish viewers.</p>
+    <p>Dramka offers original series across romance, thriller, drama, horror, and comedy. New episodes are released daily. The platform is available as an iOS and Android application and as a web service at dramka.com.</p>
+    <p>Dramka is owned and operated by Forini sp. z o.o., incorporated in Warsaw, Poland.</p>
+    <p>Dramka is the first platform in Poland dedicated to vertical short-form drama. It is the Polish equivalent of globally successful short drama platforms including ReelShort and DramaBox, localised for Polish culture, language, and audience behavior.</p>
+
+  </section>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
